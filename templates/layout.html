@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ '/static/style.css'|url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="manifest" href="/site.webmanifest">
+  {% block extrahead %}{% endblock extrahead %}
+  <title>
+    {% block title %}
+    {% if this.title %}{{ this.title }} —{% endif %} AldOndJong
+    {% endblock %}
+  </title>
+</head>
+
+<body class="bg-fixed sm:mt-6">
+  <div class="sm:max-w-[40rem] md:max-w-3xl lg:max-w-5xl mx-auto">
+    <header class="pl-3 pr-5 pt-4 bg_off-white relative rounded-t">
+      <h1 class="text-indigo-500 text-[42px] md:inline ml-2">AldOndJong</h1>
+      <h2 class="text-indigo-400 text-xl md:inline ml-2">
+        Gemeinschaftliches Wohnen in Berglen
+      </h2>
+      {% include 'navigation.html' %}
+    </header>
+    <div class="page">
+      {% block body %}{% endblock %}
+    </div>
+    <footer class="px-7 py-5 bg_off-white rounded-b">
+      &copy; Copyright 2025 by AldOndJong eG
+      <a href="/datenschutz" class="ml-8">Datenschutz</a>
+      <a href="/impressum" class="ml-8">Impressum</a>
+    </footer>
+  </div>
+  {% block extrafooter %}{% endblock extrafooter %}
+  <script type="text/javascript">
+    (function () {
+      for (let item of document.getElementsByTagName("a")) {
+        if (item.href.endsWith("email")) {
+          let content = item.textContent;
+          item.href = "mailto:" + content + "@aldondjong.de";
+          item.textContent = content + "@aldondjong.de";
+        }
+      }
+    })();
+  </script>
+</body>
+
+</html>

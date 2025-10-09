@@ -1,0 +1,142 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+    --off-white: rgb(241 251 254);
+    --off-white-transparent: rgb(241 251 254 / 0.9);
+    font-size: 1.1em;
+}
+
+@font-face {
+    font-family: AlteHaasGrotesk;
+    src: url("/static/AlteHaasGroteskRegular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: AlteHaasGrotesk, sans-serif;
+    /* font-family: 'Verdana', sans-serif;   */
+    background-size: 100% auto;
+}
+
+@media screen and (orientation:landscape) {
+    body {
+        background-image: url("/static/Mohnbluete-landscape.jpg");
+    }
+}
+
+@media screen and (orientation:portrait) {
+    body {
+        background-image: url("/static/Mohnbluete-portrait.jpg");
+    }
+}
+
+a:hover {
+    color: var(--color-indigo-400);
+}
+
+.bg_off-white {
+    background: var(--off-white);
+}
+
+.page {
+    background-color: var(--off-white-transparent);
+    backdrop-filter: blur(10px);
+
+    /* Styling for markdown content */
+    p,
+    ul {
+        padding: 8px 0;
+    }
+
+    ul {
+        list-style: disc outside;
+        margin-left: 1em;
+    }
+
+    h2,
+    h3 {
+        margin-top: 0.5rem;
+        color: var(--color-indigo-500);
+    }
+
+    h2 {
+        font-size: var(--text-2xl);
+        line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+
+    h3 {
+        font-size: var(--text-xl);
+        line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+
+    blockquote {
+        padding: 4px 16px;
+        color: var(--color-slate-600);
+        background: var(--off-white);
+    }
+
+    a {
+        color: var(--color-indigo-700);
+        text-decoration: underline;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+}
+
+/* < sm */
+.special-float-right,
+.special-float-left {
+    @media (width < 40rem) {
+        width: 100%;
+    }
+}
+
+/* sm */
+@media (width >=40rem) {
+    .rechtslinks {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+    }
+
+    .odd .rlimage,
+    .even .rltext {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .even .rlimage,
+    .odd .rltext {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .special-float-right,
+    .special-float-left {
+        width: calc(var(--spacing)*80);
+        height: auto;
+    }
+
+    .special-float-right {
+        float: right;
+        margin-left: 8px;
+    }
+
+    .special-float-left {
+        float: left;
+        margin-right: 8px;
+    }
+}
+
+/* lg */
+@media (width >=64rem) {
+
+    .special-float-right,
+    .special-float-left {
+        width: 400px;
+    }
+}

@@ -1,0 +1,72 @@
+<!-- Buttons -->
+{% for id, klass, path in (
+("show-menu",
+"",
+"M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110
+2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"),
+("hide-menu",
+"hidden",
+"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414
+10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0
+01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z")) %}
+<button id="{{ id }}"
+  class="{{ klass }} md:hidden w-10 h-10 bg-gray-200 text-gray-600 p-2 absolute top-4 right-4 rounded">
+  <svg fill="currentColor" viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="{{ path }}">
+    </path>
+  </svg>
+</button>
+{% endfor %}
+
+{% set navitems = [
+['/', 'Willkommen', []],
+['/haus', 'Das Objekt', []],
+['/about', 'Über uns', [['/about/historie', 'Historie'],
+['/about/links', 'Links']]],
+['/mitmachen', 'Mitmachen', [['/mitmachen/finanzen', 'Finanzielles'],
+['/mitmachen/recht', 'Rechtliches']]],
+['/support', 'Unterstützen', []],
+['/blog', 'Aktuelles', []],
+['/kontakt', 'Kontakt', []]
+] %}
+<nav class="hidden md:block">
+  <ul class="list-none">
+    {% for href, title, submenu in navitems %}
+    <li class="md:inline md:px-2 md:py-2 group
+            {% if is_subpath(this.path, href) %}text-indigo-400 bg-indigo-100{% else %}text-indigo-500{% endif %}
+            {% if submenu %} md:relative md:inline-block{% endif %}">
+      <a href="{{ href|url }}">{{ title }}</a>
+      {% if submenu %}
+      <ul
+        class="md:absolute md:top-10 md:left-0 md:hidden md:group-hover:block md:z-10 md:shadow-md bg_off-white md:pb-2">
+        {% for subhref, subtitle in submenu %}
+        <li
+          class="pl-2 md:py-1 md:px-3
+                    {% if is_subpath(this.path, subhref) %}text-indigo-400 bg-indigo-100{% else %}text-indigo-500{% endif %}">
+          <a href="{{ subhref|url }}">{{ subtitle }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
+<script>
+  // Menu
+  const show_btn = document.getElementById("show-menu");
+  const hide_btn = document.getElementById("hide-menu");
+  const navigation = document.querySelector("nav");
+
+  show_btn.addEventListener("click", event => {
+    show_btn.classList.add("hidden");
+    hide_btn.classList.remove("hidden");
+    navigation.classList.remove("hidden");
+  })
+  hide_btn.addEventListener("click", event => {
+    show_btn.classList.remove("hidden");
+    hide_btn.classList.add("hidden");
+    navigation.classList.add("hidden");
+  })
+</script>

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if this.title %}
+<h1 class="text-3xl text-indigo-500 pb-4">{{ this.title }}</h1>
+{% endif %}
+{% for blk in this.body.blocks %}
+<div class="rechtslinks {{ loop.cycle('odd', 'even') }}">
+    {{ blk }}
+</div>
+{% endfor %}
+{% endblock %}

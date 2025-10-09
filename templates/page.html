@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="p-5">
+    <h1 class="text-3xl text-indigo-500 pb-4">{{ this.title }}</h1>
+    {% block content %}
+    {{ this.body }}
+    {% endblock %}
+</div>
+{% endblock %}

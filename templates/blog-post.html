@@ -1,0 +1,14 @@
+{% extends "page.html" %}
+{% block content %}
+{% if this.image %}
+<a href="{{ this.image }}">
+    <img src="{{ this.image }}" alt="{{ this.alttitle }}"
+        class="w-120 h-auto float-right pl-4 pb-2">
+</a>
+{% endif %}
+{{ this.body }}
+<div class="text-right pb-3">
+    {{ this.pub_date.strftime('%d. %B %Y') }}, von {{ this.author }}
+</div>
+<div class="clear-both"></div>
+{% endblock %}

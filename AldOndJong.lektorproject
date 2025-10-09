@@ -1,0 +1,12 @@
+[project]
+name = AldOndJong
+
+[packages]
+lektor-tailwind = 0.3.0
+subpaths = 0.1
+
+[servers.staging]
+name = Staging
+enabled = yes
+default = yes
+target = rsync://ammon/var/www/virtual/ammon/aldondjong.ammon.me

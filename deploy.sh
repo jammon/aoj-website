@@ -1,0 +1,1 @@
+rclone sync `lektor project-info --output-path` aoj-website: --exclude ".lektor/*"
