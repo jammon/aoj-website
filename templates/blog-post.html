@@ -8,7 +8,7 @@
 {% endif %}
 {{ this.body }}
 <div class="text-right pb-3">
-    {{ this.pub_date.strftime('%d. %B %Y') }}, von {{ this.author }}
+    {{ this.pub_date|dateformat('d. MMMM YYYY') }}, von {{ this.author }}
 </div>
 <div class="clear-both"></div>
 {% endblock %}

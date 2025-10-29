@@ -1,5 +1,6 @@
 [project]
 name = AldOndJong
+locale = de_DE
 
 [packages]
 lektor-tailwind = 0.3.0
